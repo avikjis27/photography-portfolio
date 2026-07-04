@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Cpu, Camera, Eye, Copy, Check, Sliders } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Cpu, Camera, Sliders } from 'lucide-react';
 import { Photo } from '../types';
 
 interface LightboxProps {
@@ -10,8 +10,6 @@ interface LightboxProps {
 }
 
 export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxProps) {
-  const [copied, setCopied] = React.useState(false);
-
   // Bind key events
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -22,32 +20,6 @@ export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxPro
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose, onNext, onPrev]);
-
-  // Copy URL with feedback
-  const handleCopyUrl = () => {
-    navigator.clipboard.writeText(photo.url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  // Analyze if URL is Cloudinary or Unsplash
-  const isCloudinary = photo.url.includes('cloudinary.com');
-  const isUnsplash = photo.url.includes('unsplash.com');
-
-  // Generate an optimized delivery URL as an educational guide
-  const optimizedUrl = (() => {
-    if (isCloudinary) {
-      // Inject f_auto,q_auto for Cloudinary high-speed delivery
-      const splitUrl = photo.url.split('/upload/');
-      if (splitUrl.length === 2) {
-        return `${splitUrl[0]}/upload/f_auto,q_auto,w_1800/${splitUrl[1]}`;
-      }
-    } else if (isUnsplash) {
-      // Ensure high quality and auto formatting for Unsplash
-      return `${photo.url.split('?')[0]}?q=85&w=1800&auto=format&fit=crop`;
-    }
-    return photo.url;
-  })();
 
   return (
     <div id="lightbox-overlay" className="fixed inset-0 z-50 flex flex-col md:flex-row bg-zinc-950/98 text-zinc-100 animate-fade-in">
@@ -73,12 +45,24 @@ export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxPro
           <ChevronLeft className="h-5 w-5" />
         </button>
 
-        <img
-          src={photo.url}
-          alt={photo.title}
-          referrerPolicy="no-referrer"
-          className="max-h-[75vh] md:max-h-[90vh] max-w-full object-contain border border-zinc-800/80 transition-all duration-300"
-        />
+        <div className="relative group overflow-hidden max-h-[75vh] md:max-h-[90vh] max-w-full flex items-center justify-center">
+          <img
+            src={photo.url}
+            alt={photo.title}
+            referrerPolicy="no-referrer"
+            onContextMenu={(e) => e.preventDefault()}
+            className="max-h-[75vh] md:max-h-[90vh] max-w-full object-contain border border-zinc-800/80 transition-all duration-300 select-none"
+          />
+
+          {/* Translucent Copyright Overlay on Hover */}
+          <div className="absolute bottom-0 left-0 right-0 bg-zinc-950/40 backdrop-blur-lg border-t border-zinc-800/40 p-4 translate-y-[80%] transition-transform duration-300 ease-out group-hover:translate-y-0 select-none pointer-events-auto">
+            <p className="font-sans text-[10px] tracking-wide text-zinc-300 leading-relaxed max-w-lg mx-auto text-center">
+              © {new Date().getFullYear()} Avik & Anwesha. All rights reserved. 
+              Copying, downloading, or reproducing this image for commercial or non-commercial purposes 
+              is strictly prohibited without prior written permission. Contact <a href="mailto:avik.chakbty.photos@gmail.com" className="text-white underline hover:text-zinc-200 transition-colors">avik.chakbty.photos@gmail.com</a>.
+            </p>
+          </div>
+        </div>
 
         <button
           id="lightbox-next-btn"
@@ -153,47 +137,7 @@ export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxPro
             </div>
           </div>
 
-          {/* Cloudinary Integration Guide */}
-          <div className="border border-zinc-800 bg-zinc-950/30 p-4 space-y-3">
-            <h4 className="font-sans text-[10px] tracking-widest uppercase text-zinc-400 font-bold flex items-center gap-1.5">
-              <Eye className="h-3.5 w-3.5 text-zinc-400" />
-              Delivery &amp; CDN Optimization
-            </h4>
 
-            <p className="font-sans text-xs text-zinc-400 leading-relaxed">
-              {isCloudinary 
-                ? "This file is served via Cloudinary. Real-time automatic transformation is active to deliver webp formatting and customized dimensions instantly." 
-                : "This image is served via high-speed CDN. Below is the active frame delivery URL."}
-            </p>
-
-            {/* URL Display Card */}
-            <div className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 p-2">
-              <input
-                type="text"
-                readOnly
-                value={optimizedUrl}
-                className="flex-1 bg-transparent font-mono text-[10px] text-zinc-400 outline-none select-all truncate"
-              />
-              <button
-                id="copy-url-btn"
-                onClick={handleCopyUrl}
-                className="p-1 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-                title="Copy delivery link"
-              >
-                {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
-              </button>
-            </div>
-
-            {/* Transformations description for Cloudinary */}
-            {isCloudinary && (
-              <div className="text-[10px] font-mono text-zinc-500 leading-tight space-y-1">
-                <span className="text-zinc-400">Transformations:</span>
-                <div>• <code className="text-zinc-450">f_auto</code>: Auto WebP/AVIF format</div>
-                <div>• <code className="text-zinc-450">q_auto</code>: Perceptual compression tuning</div>
-                <div>• <code className="text-zinc-450">w_1800</code>: Smart high-res desktop scaling</div>
-              </div>
-            )}
-          </div>
 
         </div>
 

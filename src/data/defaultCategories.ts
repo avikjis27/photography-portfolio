@@ -1,527 +1,62 @@
 import { Category } from '../types';
 
 const rawDefaultCategories: Category[] = [
-//   {
-//     id: '2025-west-sikkim',
-//     title: 'West Sikkim, India',
-//     type: 'travel',
-//     coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755158/_DSC2768_mgci8d.jpg',
-//     location: 'West Sikkim, India',
-//     dateRange: 'Winter 2025',
-//     description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
-
-// This photo essay captures the silent dialogue between architecture and nature. We walked through Fushimi Inari-taisha at five in the morning, before the orange corridors were filled with voices, hearing only the distant cry of crows and the crunch of gravel beneath our boots. In Arashiyama, the bamboo stalks whispered as they swayed, filter-feeding the dawn light into stripes of vibrant emerald. 
-
-// Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doors soften the afternoon sun, casting long, peaceful gradients across tatami mats. Through these photographs, I sought to capture "Yūgen"—a profound, mysterious grace, and "Wabi-Sabi"—the beautiful imperfection of weathered wooden facades, fallen autumn maple leaves on dark stone basins, and steam rising from a single bowl of hand-whisked matcha.`,
-//     photos: [
-//       {
-//         id: '2025-west-sikkim-1',
-//         url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782754077/_DSC2584_ltzzj5.jpg',
-//         title: 'Golden Pavilion in Autumn',
-//         description: 'The Kinkaku-ji temple reflected perfectly in the Mirror Pond, framed by maple trees in their peak scarlet brilliance.',
-//         location: 'Kinkaku-ji, Kyoto',
-//         date: '2025-11-12',
-//         aspectRatio: 'landscape',
-//         exif: {
-//           camera: 'Fujifilm X-T5',
-//           lens: 'XF 16-55mm f/2.8 R LM WR',
-//           shutter: '1/250s',
-//           aperture: 'f/5.6',
-//           iso: '160',
-//           focalLength: '35mm'
-//         }
-//       },
-//       {
-//         id: '2025-west-sikkim-2',
-//         url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755099/_DSC2796_slsmtg.jpg',
-//         title: 'Yasaka Pagoda at Twilight',
-//         description: 'The historic streets of Higashiyama empty out as twilight paints the sky in shades of deep indigo and violet.',
-//         location: 'Higashiyama, Kyoto',
-//         date: '2025-11-14',
-//         aspectRatio: 'portrait',
-//         exif: {
-//           camera: 'Sony A7R V',
-//           lens: 'FE 24-70mm f/2.8 GM II',
-//           shutter: '1/15s',
-//           aperture: 'f/4.0',
-//           iso: '800',
-//           focalLength: '50mm'
-//         }
-//       },
-//       {
-//         id: '2025-west-sikkim-3',
-//         url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755158/_DSC2768_mgci8d.jpg',
-//         title: 'Arashiyama Bamboo Forest',
-//         description: 'Stately green bamboo shoots reaching upwards, sculpting the midday sun into columns of soft, lime-colored light.',
-//         location: 'Arashiyama, Kyoto',
-//         date: '2025-11-15',
-//         aspectRatio: 'portrait',
-//         exif: {
-//           camera: 'Fujifilm X-T5',
-//           lens: 'XF 10-24mm f/4 R OIS WR',
-//           shutter: '1/60s',
-//           aperture: 'f/4.0',
-//           iso: '320',
-//           focalLength: '14mm'
-//         }
-//       },
-//       {
-//         id: '2025-west-sikkim-4',
-//         url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755098/_DSC2714_lk6cvh.jpg',
-//         title: 'Gion Lanterns',
-//         description: 'A traditional wooden house facade illuminated by warm red paper lanterns in Gion district.',
-//         location: 'Gion, Kyoto',
-//         date: '2025-11-13',
-//         aspectRatio: 'landscape',
-//         exif: {
-//           camera: 'Leica M11',
-//           lens: 'Summilux-M 35mm f/1.4 ASPH',
-//           shutter: '1/45s',
-//           aperture: 'f/1.4',
-//           iso: '400',
-//           focalLength: '35mm'
-//         }
-//       }
-//     ]
-//   },
   {
-    id: 'swiss-alps',
-    state: 'wb',
-    title: 'The Swiss Alps',
+    id: '2025-west-sikkim',
+    state: 'sk',
+    title: 'West Sikkim, India',
     type: 'travel',
-    coverUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop',
-    location: 'Valais and Bernese Oberland, Switzerland',
-    dateRange: 'Summer 2024',
-    description: `An exploration of immense scale, cold winds, and silent, majestic peaks. The Swiss Alps are not merely mountains; they are monument structures of tectonic history that make all human timelines feel completely insignificant. 
-
-Our route was slow and deliberate. We spent a week around the car-free town of Zermatt, watching the Matterhorn hide in shifting storm fronts and re-emerging at sunrise like a dark, angular tooth chewing on clouds. In the Bernese Oberland, we rode rack-railway trains through tunnels bored directly into the solid rock face of the Eiger and hiked through the Lauterbrunnen valley, where twenty-eight waterfalls drop vertically from massive limestone cliffs into green meadows dotted with cows and small timber barns.
-
-These photographs represent an attempt to capture both the micro-landscapes and the endless expanses. I spent hours waiting for wild mountain goats to step into position on high-elevation ridges, tracking the slow crawl of glaciers carving valleys over millennia, and capturing the warmth of single wooden huts lit from within under cold, unpolluted starry night skies.`,
+    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755158/_DSC2768_mgci8d.jpg',
+    location: 'West Sikkim, India',
+    dateRange: 'Winter 2025',
+    description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
+This photo essay captures the silent dialogue between architecture and nature. We walked through Fushimi Inari-taisha at five in the morning, before the orange corridors were filled with voices, hearing only the distant cry of crows and the crunch of gravel beneath our boots. In Arashiyama, the bamboo stalks whispered as they swayed, filter-feeding the dawn light into stripes of vibrant emerald.
+Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doors soften the afternoon sun, casting long, peaceful gradients across tatami mats. Through these photographs, I sought to capture "Yūgen"—a profound, mysterious grace, and "Wabi-Sabi"—the beautiful imperfection of weathered wooden facades, fallen autumn maple leaves on dark stone basins, and steam rising from a single bowl of hand-whisked matcha.`,
     photos: [
       {
-        id: 'alps-1',
-        url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop',
-        title: 'Tectonic Monolith',
-        description: 'A sharp, glaciated peak towering above clouds as seen from Gornergrat, showing millions of years of rock folding.',
-        location: 'Gornergrat, Zermatt',
-        date: '2024-07-04',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 24-70mm f/2.8 GM II',
-          shutter: '1/400s',
-          aperture: 'f/8.0',
-          iso: '100',
-          focalLength: '45mm'
-        }
+        id: '2025-west-sikkim-1',
+        url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782754077/_DSC2584_ltzzj5.jpg',
+        title: 'Golden Pavilion in Autumn',
+        description: 'The Kinkaku-ji temple reflected perfectly in the Mirror Pond, framed by maple trees in their peak scarlet brilliance.',
+        location: 'Kinkaku-ji, Kyoto',
+        date: '2025-11-12',
+        aspectRatio: 'landscape'
       },
       {
-        id: 'alps-2',
-        url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop',
-        title: 'Morning in Lauterbrunnen',
-        description: 'The dramatic morning sun rays cutting through cliffs, illuminating Staubbach Falls dropping into the valley mist.',
-        location: 'Lauterbrunnen Valley',
-        date: '2024-07-06',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 16-55mm f/2.8 R LM WR',
-          shutter: '1/160s',
-          aperture: 'f/5.6',
-          iso: '200',
-          focalLength: '24mm'
-        }
+        id: '2025-west-sikkim-2',
+        url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755099/_DSC2796_slsmtg.jpg',
+        title: 'Yasaka Pagoda at Twilight',
+        description: 'The historic streets of Higashiyama empty out as twilight paints the sky in shades of deep indigo and violet.',
+        location: 'Higashiyama, Kyoto',
+        date: '2025-11-14',
+        aspectRatio: 'portrait'
       },
       {
-        id: 'alps-3',
-        url: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1200&auto=format&fit=crop',
-        title: 'Lake Bachalpsee Calm',
-        description: 'A crystal-clear reflection of Schreckhorn and Wetterhorn in the perfectly glassy mountain waters of Bachalpsee.',
-        location: 'Grindelwald First, Bern',
-        date: '2024-07-08',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 16-35mm f/4 G PZ',
-          shutter: '1/250s',
-          aperture: 'f/8.0',
-          iso: '100',
-          focalLength: '18mm'
-        }
+        id: '2025-west-sikkim-3',
+        url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755158/_DSC2768_mgci8d.jpg',
+        title: 'Arashiyama Bamboo Forest',
+        description: 'Stately green bamboo shoots reaching upwards, sculpting the midday sun into columns of soft, lime-colored light.',
+        location: 'Arashiyama, Kyoto',
+        date: '2025-11-15',
+        aspectRatio: 'portrait'
       },
       {
-        id: 'alps-4',
-        url: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1200&auto=format&fit=crop',
-        title: 'Crests of Snow',
-        description: 'A dynamic telephoto capture of razor-sharp wind-blown snow ridges on a high alpine col.',
-        location: 'Jungfraujoch, Grindelwald',
-        date: '2024-07-07',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 70-200mm f/2.8 GM OSS II',
-          shutter: '1/2000s',
-          aperture: 'f/5.6',
-          iso: '100',
-          focalLength: '180mm'
-        }
+        id: '2025-west-sikkim-4',
+        url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755098/_DSC2714_lk6cvh.jpg',
+        title: 'Gion Lanterns',
+        description: 'A traditional wooden house facade illuminated by warm red paper lanterns in Gion district.',
+        location: 'Gion, Kyoto',
+        date: '2025-11-13',
+        aspectRatio: 'landscape'
       },
       {
-        id: 'alps-5',
-        url: 'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?q=80&w=1200&auto=format&fit=crop',
-        title: 'Deep Glacier Crevasse',
-        description: 'The incredible sapphire-blue depths of a glaciated crevasse in the massive Aletsch Glacier.',
-        location: 'Aletsch Glacier, Valais',
-        date: '2024-07-10',
-        aspectRatio: 'square',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 18mm f/1.4 R LM WR',
-          shutter: '1/500s',
-          aperture: 'f/4.0',
-          iso: '160',
-          focalLength: '18mm'
-        }
-      },
-      {
-        id: 'alps-6',
-        url: 'https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=1200&auto=format&fit=crop',
-        title: 'Mountain Lake Reflection',
-        description: 'An early-morning shot of alpine mountains and pristine dark evergreen trees perfectly reflecting on a glassy pool.',
-        location: 'Lake Oeschinen, Kandersteg',
-        date: '2024-07-09',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Leica M11',
-          lens: 'Summicron-M 35mm f/2 ASPH',
-          shutter: '1/125s',
-          aperture: 'f/5.6',
-          iso: '100',
-          focalLength: '35mm'
-        }
-      },
-      {
-        id: 'alps-7',
-        url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop',
-        title: 'Ridge Line Trails',
-        description: 'A hiker navigating a narrow ridge path, surrounded by sweeping grass meadows and distant steep peaks.',
-        location: 'Stoos Ridge, Central Switzerland',
-        date: '2024-07-11',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 16-55mm f/2.8 R LM WR',
-          shutter: '1/320s',
-          aperture: 'f/4.0',
-          iso: '200',
-          focalLength: '28mm'
-        }
-      },
-      {
-        id: 'alps-8',
-        url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop',
-        title: 'The Valley Mist',
-        description: 'Thick valley fog settling between dark mountain forest silhouettes as dawn breaks on the horizons.',
-        location: 'Interlaken Valley',
-        date: '2024-07-05',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 70-200mm f/2.8 GM OSS II',
-          shutter: '1/100s',
-          aperture: 'f/2.8',
-          iso: '400',
-          focalLength: '120mm'
-        }
-      },
-      {
-        id: 'alps-9',
-        url: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1200&auto=format&fit=crop',
-        title: 'Solitary Cabin',
-        description: 'A beautiful dark timber cabin standing on a vast green field, surrounded by ancient dark pine trees.',
-        location: 'Grindelwald Outskirts',
-        date: '2024-07-07',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Leica M11',
-          lens: 'Summilux-M 50mm f/1.4 ASPH',
-          shutter: '1/250s',
-          aperture: 'f/2.8',
-          iso: '100',
-          focalLength: '50mm'
-        }
-      },
-      {
-        id: 'alps-10',
-        url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop',
-        title: 'Starry Canopy Above peaks',
-        description: 'An astrophotography study of the Milky Way galaxy framing the snow-capped, rugged mountains at midnight.',
-        location: 'Simplon Pass, Valais',
-        date: '2024-07-10',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 14mm f/1.8 GM',
-          shutter: '15s',
-          aperture: 'f/1.8',
-          iso: '3200',
-          focalLength: '14mm'
-        }
-      },
-      {
-        id: 'alps-11',
-        url: 'https://images.unsplash.com/photo-1531361312168-7d97117f5e73?q=80&w=1200&auto=format&fit=crop',
-        title: 'The Red Mountain Railway',
-        description: 'The iconic red Swiss train winding its way along a breathtaking curved stone viaduct high over alpine pines.',
-        location: 'Bernina Express, Graubünden',
-        date: '2024-07-12',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 24-70mm f/2.8 GM II',
-          shutter: '1/640s',
-          aperture: 'f/4.0',
-          iso: '160',
-          focalLength: '35mm'
-        }
-      },
-      {
-        id: 'alps-12',
-        url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop',
-        title: 'Lake Lucerne Shorelines',
-        description: 'Turquoise waters breaking gently on smooth white pebbles with mountains plunging directly into the lake.',
-        location: 'Lake Lucerne, Central Switzerland',
-        date: '2024-07-03',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Leica M11',
-          lens: 'Elmarit-M 28mm f/2.8 ASPH',
-          shutter: '1/200s',
-          aperture: 'f/5.6',
-          iso: '100',
-          focalLength: '28mm'
-        }
-      },
-      {
-        id: 'alps-13',
-        url: 'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=1200&auto=format&fit=crop',
-        title: 'Alpine Chalet Village',
-        description: 'Hundreds of traditional brown-timber Swiss chalets clustered in the emerald bowl of Grindelwald valley.',
-        location: 'Grindelwald Village',
-        date: '2024-07-07',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 16-55mm f/2.8 R LM WR',
-          shutter: '1/125s',
-          aperture: 'f/5.6',
-          iso: '160',
-          focalLength: '55mm'
-        }
-      },
-      {
-        id: 'alps-14',
-        url: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=1200&auto=format&fit=crop',
-        title: 'Crystalline Glacial Stream',
-        description: 'A rushing torrent of icy turquoise meltwater carving through smooth gray river rocks and mossy forests.',
-        location: 'Rosenlaui Glacier Gorge',
-        date: '2024-07-08',
-        aspectRatio: 'square',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 16-35mm f/4 G PZ',
-          shutter: '1/8s',
-          aperture: 'f/11.0',
-          iso: '50',
-          focalLength: '24mm'
-        }
-      },
-      {
-        id: 'alps-15',
-        url: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?q=80&w=1200&auto=format&fit=crop',
-        title: 'Cabin in the Sky',
-        description: 'A single yellow cable car floating effortlessly in front of the massive snow-capped south face of the Eiger.',
-        location: 'Eiger Express, Grindelwald',
-        date: '2024-07-07',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 50-140mm f/2.8 R LM OIS WR',
-          shutter: '1/800s',
-          aperture: 'f/4.0',
-          iso: '160',
-          focalLength: '70mm'
-        }
-      },
-      {
-        id: 'alps-16',
-        url: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1200&auto=format&fit=crop',
-        title: 'Camp at First Light',
-        description: 'A glowing orange tent pitched on a high grassy col, with mountain fog sweeping through distant spruce tops.',
-        location: 'Schynige Platte, Interlaken',
-        date: '2024-07-05',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 24-70mm f/2.8 GM II',
-          shutter: '1/30s',
-          aperture: 'f/2.8',
-          iso: '400',
-          focalLength: '24mm'
-        }
-      },
-      {
-        id: 'alps-17',
-        url: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1200&auto=format&fit=crop',
-        title: 'Light Rays Through Larches',
-        description: 'Magical golden afternoon sunbeams filtering through ancient alpine larch trees on a wet mountain slopes.',
-        location: 'Zermatt Forests, Valais',
-        date: '2024-07-04',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Leica M11',
-          lens: 'Summilux-M 35mm f/1.4 ASPH',
-          shutter: '1/160s',
-          aperture: 'f/2.0',
-          iso: '160',
-          focalLength: '35mm'
-        }
-      },
-      {
-        id: 'alps-18',
-        url: 'https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?q=80&w=1200&auto=format&fit=crop',
-        title: 'The Alpine Pasture',
-        description: 'A sea of purple and yellow wildflowers swaying in mountain pastures, looking out to steep glacial cliffs.',
-        location: 'Mürren Alpine Meadow',
-        date: '2024-07-06',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 16-55mm f/2.8 R LM WR',
-          shutter: '1/500s',
-          aperture: 'f/4.0',
-          iso: '200',
-          focalLength: '35mm'
-        }
-      },
-      {
-        id: 'alps-19',
-        url: 'https://images.unsplash.com/photo-1563170351-be82bc888bb4?q=80&w=1200&auto=format&fit=crop',
-        title: 'Narrow Streets of Zermatt',
-        description: 'Wandering through Zermatt town, capturing the classic dark larch wood facades standing on stone stilts.',
-        location: 'Hinterdorf, Zermatt',
-        date: '2024-07-04',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Leica M11',
-          lens: 'Summicron-M 35mm f/2 ASPH',
-          shutter: '1/125s',
-          aperture: 'f/2.8',
-          iso: '250',
-          focalLength: '35mm'
-        }
-      },
-      {
-        id: 'alps-20',
-        url: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=1200&auto=format&fit=crop',
-        title: 'The Alpine Ski Trails',
-        description: 'A high-elevation snowy ridge trail looking out to a vast, untouched sea of white peaks in the Bernese Oberland.',
-        location: 'Jungfrau Region',
-        date: '2024-07-07',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 70-200mm f/2.8 GM OSS II',
-          shutter: '1/1600s',
-          aperture: 'f/8.0',
-          iso: '100',
-          focalLength: '70mm'
-        }
-      },
-      {
-        id: 'alps-21',
-        url: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1200&auto=format&fit=crop',
-        title: 'On the Mountain Crest',
-        description: 'A spectacular capture of a sheer rock ridge, showing the stark drops on either side of an alpine route.',
-        location: 'Klingenstock Summit',
-        date: '2024-07-11',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 10-24mm f/4 R OIS WR',
-          shutter: '1/400s',
-          aperture: 'f/6.3',
-          iso: '160',
-          focalLength: '12mm'
-        }
-      },
-      {
-        id: 'alps-22',
-        url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
-        title: 'Lake Lunch Break',
-        description: 'A slow picnic set up by the shore of a quiet blue alpine lake, looking at mountains cutting the skies.',
-        location: 'Lake Bachalpsee, Grindelwald',
-        date: '2024-07-08',
-        aspectRatio: 'square',
-        exif: {
-          camera: 'Fujifilm X-T5',
-          lens: 'XF 23mm f/1.4 R LM WR',
-          shutter: '1/500s',
-          aperture: 'f/2.8',
-          iso: '160',
-          focalLength: '23mm'
-        }
-      },
-      {
-        id: 'alps-23',
-        url: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
-        title: 'The Valley Village',
-        description: 'Looking down into a historic Swiss village, with brown roofs standing out on lush emerald hillsides.',
-        location: 'Wengen Village, Bern',
-        date: '2024-07-06',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 24-70mm f/2.8 GM II',
-          shutter: '1/250s',
-          aperture: 'f/4.0',
-          iso: '100',
-          focalLength: '50mm'
-        }
-      },
-      {
-        id: 'alps-24',
-        url: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=1200&auto=format&fit=crop',
-        title: 'Ice Cave Exploration',
-        description: 'Wandering deep inside a naturally occurring glacial cave, with light bouncing off crystalline walls.',
-        location: 'Rhone Glacier Cave',
-        date: '2024-07-10',
-        aspectRatio: 'portrait',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 16-35mm f/4 G PZ',
-          shutter: '1/15s',
-          aperture: 'f/4.0',
-          iso: '1250',
-          focalLength: '16mm'
-        }
-      },
-      {
-        id: 'alps-25',
-        url: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop',
-        title: 'Matterhorn Golden peak',
-        description: 'The final rays of the setting sun hitting only the absolute triangular peak of the majestic Matterhorn.',
-        location: 'Riffelsee, Zermatt',
-        date: '2024-07-04',
-        aspectRatio: 'landscape',
-        exif: {
-          camera: 'Sony A7R V',
-          lens: 'FE 70-200mm f/2.8 GM OSS II',
-          shutter: '1/125s',
-          aperture: 'f/2.8',
-          iso: '200',
-          focalLength: '200mm'
-        }
+        id: '2025-west-sikkim-5',
+        url: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1783188187/_DSC2973_jz88xg.jpg',
+        title: 'Gion Lanterns',
+        description: 'A traditional wooden house facade illuminated by warm red paper lanterns in Gion district.',
+        location: 'Gion, Kyoto',
+        date: '2025-11-13',
+        aspectRatio: 'landscape'
       }
     ]
   },

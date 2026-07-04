@@ -57,19 +57,19 @@ export default function GalleryView({ category, onBack, onPhotoClick }: GalleryV
     return `${minutes} min read`;
   }, [category.description]);
 
-  // Determine layout grid classes dynamically to prevent empty columns and cover viewport
+  // Determine layout columns classes dynamically to prevent empty columns and support masonry packing
   const gridClassName = useMemo(() => {
     const count = processedPhotos.length;
     if (count === 1) {
-      return "grid grid-cols-1 max-w-3xl mx-auto gap-6 w-full";
+      return "columns-1 max-w-3xl mx-auto gap-6 w-full";
     }
     if (count === 2) {
-      return "grid grid-cols-1 sm:grid-cols-2 gap-6 w-full";
+      return "columns-1 sm:columns-2 gap-6 w-full";
     }
     if (count === 4) {
-      return "grid grid-cols-1 sm:grid-cols-2 gap-6 w-full";
+      return "columns-1 sm:columns-2 gap-6 w-full";
     }
-    return "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full";
+    return "columns-1 sm:columns-2 md:columns-3 gap-6 w-full";
   }, [processedPhotos]);
 
   return (
@@ -235,7 +235,7 @@ export default function GalleryView({ category, onBack, onPhotoClick }: GalleryV
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: Math.min(idx * 0.03, 0.4), duration: 0.4 }}
             onClick={() => onPhotoClick(photo)}
-            className="group relative cursor-pointer break-inside-avoid overflow-hidden border border-zinc-150 bg-zinc-50 transition-all duration-350 hover:border-zinc-400"
+            className="group relative cursor-pointer break-inside-avoid mb-6 overflow-hidden border border-zinc-150 bg-zinc-50 transition-all duration-350 hover:border-zinc-400"
           >
             {/* Dynamic Sized Image */}
             <img
