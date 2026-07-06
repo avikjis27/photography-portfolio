@@ -17,6 +17,8 @@ export interface Photo {
   aspectRatio: 'portrait' | 'landscape' | 'square';
   tag?: string;
   exif?: ExifData;
+  metadata?: Record<string, any>;
+  context?: Record<string, any>;
 }
 
 export interface Category {

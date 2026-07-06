@@ -75,6 +75,11 @@ async function run() {
     const albumStats = {};
 
     response.resources.forEach((resource, index) => {
+      if (index === 0) {
+        console.log('\n--- DEBUG: Raw Cloudinary Response Object (First Image) ---');
+        console.log(JSON.stringify(resource, null, 2));
+        console.log('----------------------------------------------------------\n');
+      }
       const publicId = resource.public_id;
       const folderPath = resource.asset_folder || resource.folder || (publicId.includes('/') ? publicId.substring(0, publicId.lastIndexOf('/')) : '');
       
@@ -132,6 +137,7 @@ async function run() {
 
       // Extract tag filter
       const tag = resource.tags && resource.tags.length > 0 ? resource.tags[0] : 'General';
+      console.log(`  [Photo ${index + 1}] Discovered "${publicId.split('/').pop()}": tag="${tag}", tags-list=${JSON.stringify(resource.tags || [])}`);
 
       // Parse camera EXIF details
       const metadata = resource.image_metadata || {};
@@ -165,7 +171,9 @@ async function run() {
         date,
         aspectRatio,
         tag,
-        exif
+        exif,
+        metadata: resource.metadata || {},
+        context: resource.context || {}
       };
 
       // Group photos in the output nested object by year and album slug

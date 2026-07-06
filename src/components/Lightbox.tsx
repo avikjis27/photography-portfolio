@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Calendar, MapPin, Cpu, Camera, Sliders } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Photo } from '../types';
 
 interface LightboxProps {
@@ -22,132 +22,143 @@ export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxPro
   }, [onClose, onNext, onPrev]);
 
   return (
-    <div id="lightbox-overlay" className="fixed inset-0 z-50 flex flex-col md:flex-row bg-zinc-950/98 text-zinc-100 animate-fade-in">
+    <div id="lightbox-overlay" className="fixed inset-0 z-50 flex flex-col md:flex-row bg-zinc-950/98 text-zinc-100 animate-fade-in select-none">
       
-      {/* Absolute close button on mobile */}
-      <button
-        id="lightbox-close-top"
-        onClick={onClose}
-        className="absolute top-4 right-4 z-50 border border-zinc-800 bg-zinc-900/90 p-2.5 text-zinc-300 hover:text-white backdrop-blur-xs md:hidden"
-      >
-        <X className="h-5 w-5" />
-      </button>
-
-      {/* Main Image Stage (Left/Center) */}
-      <div className="relative flex flex-1 items-center justify-center p-4 md:p-8 select-none bg-zinc-950">
+      {/* Left side: Image and navigation */}
+      <div className="relative flex-1 flex flex-col justify-between h-[65vh] md:h-screen p-4 md:p-8">
         
-        {/* Navigation arrow buttons */}
-        <button
-          id="lightbox-prev-btn"
-          onClick={onPrev}
-          className="absolute left-4 z-40 border border-zinc-800 bg-zinc-900/90 p-3.5 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-
-        <div className="relative group overflow-hidden max-h-[75vh] md:max-h-[90vh] max-w-full flex items-center justify-center">
-          <img
-            src={photo.url}
-            alt={photo.title}
-            referrerPolicy="no-referrer"
-            onContextMenu={(e) => e.preventDefault()}
-            className="max-h-[75vh] md:max-h-[90vh] max-w-full object-contain border border-zinc-800/80 transition-all duration-300 select-none"
-          />
-
-          {/* Translucent Copyright Overlay on Hover */}
-          <div className="absolute bottom-0 left-0 right-0 bg-zinc-950/40 backdrop-blur-lg border-t border-zinc-800/40 p-4 translate-y-[80%] transition-transform duration-300 ease-out group-hover:translate-y-0 select-none pointer-events-auto">
-            <p className="font-sans text-[10px] tracking-wide text-zinc-300 leading-relaxed max-w-lg mx-auto text-center">
-              © {new Date().getFullYear()} Avik & Anwesha. All rights reserved. 
-              Copying, downloading, or reproducing this image for commercial or non-commercial purposes 
-              is strictly prohibited without prior written permission. Contact <a href="mailto:avik.chakbty.photos@gmail.com" className="text-white underline hover:text-zinc-200 transition-colors">avik.chakbty.photos@gmail.com</a>.
-            </p>
-          </div>
+        {/* Top Header Row with Close Button (Visible on mobile/left side) */}
+        <div className="flex items-center justify-between w-full z-50 md:hidden">
+          <span className="font-sans text-[10px] uppercase tracking-widest text-zinc-400 font-bold truncate max-w-[200px]">
+            {photo.title}
+          </span>
+          <button
+            id="lightbox-close-btn-mobile"
+            onClick={onClose}
+            className="border border-white/10 bg-black/40 hover:bg-white hover:text-zinc-950 p-2 transition-all rounded-full"
+            aria-label="Close lightbox"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
 
-        <button
-          id="lightbox-next-btn"
-          onClick={onNext}
-          className="absolute right-4 z-40 border border-zinc-800 bg-zinc-900/90 p-3.5 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
+        {/* Main Image Stage */}
+        <div className="relative flex-1 flex items-center justify-center">
+          {/* Navigation arrow buttons */}
+          <button
+            id="lightbox-prev-btn"
+            onClick={onPrev}
+            className="absolute left-2 md:left-6 z-40 p-3 bg-black/40 backdrop-blur-md text-white border border-white/15 transition-all hover:bg-white hover:text-zinc-950 rounded-full"
+            aria-label="Previous photo"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
 
-        {/* Floating location tag */}
-        {photo.location && (
-          <div className="absolute bottom-4 left-4 flex items-center gap-1.5 border border-zinc-850 bg-zinc-950 px-3 py-1.5 text-[9px] uppercase tracking-widest font-bold text-zinc-200">
-            <MapPin className="h-3.5 w-3.5 text-zinc-400" />
-            <span>{photo.location}</span>
+          {/* Image Container */}
+          <div className="relative overflow-hidden max-h-full max-w-full flex items-center justify-center p-2">
+            <img
+              src={photo.url}
+              alt={photo.title}
+              referrerPolicy="no-referrer"
+              onContextMenu={(e) => e.preventDefault()}
+              className="max-h-[50vh] md:max-h-[85vh] max-w-[80vw] md:max-w-[70vw] lg:max-w-[75vw] object-contain transition-all duration-300"
+            />
           </div>
-        )}
+
+          <button
+            id="lightbox-next-btn"
+            onClick={onNext}
+            className="absolute right-2 md:right-6 z-40 p-3 bg-black/40 backdrop-blur-md text-white border border-white/15 transition-all hover:bg-white hover:text-zinc-950 rounded-full"
+            aria-label="Next photo"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Simple caption footer on mobile only */}
+        <div className="text-center pt-2 md:hidden pb-2">
+          {photo.description && (
+            <p className="font-serif text-[11px] text-zinc-400 line-clamp-2 max-w-md mx-auto px-4 italic">
+              {photo.description}
+            </p>
+          )}
+        </div>
       </div>
 
-      {/* Sidebar Camera Control Console (Right Side) */}
-      <aside id="lightbox-sidebar" className="w-full md:w-[400px] bg-zinc-900 border-t md:border-t-0 md:border-l border-zinc-800/80 p-6 flex flex-col justify-between overflow-y-auto max-h-[40vh] md:max-h-screen">
-        
+      {/* Right side: Sidebar with details (Desktop & Styled sidebar) */}
+      <div className="w-full md:w-80 lg:w-96 border-t md:border-t-0 md:border-l border-zinc-800 bg-zinc-950/60 backdrop-blur-md p-6 flex flex-col justify-between overflow-y-auto select-text">
         <div className="space-y-6">
-          {/* Header & Title */}
-          <div className="flex items-start justify-between gap-4">
-            <div className="space-y-1.5">
-              <span className="font-sans text-[9px] uppercase tracking-widest text-zinc-500 font-bold">
-                Active Frame Analysis
-              </span>
-              <h3 className="font-sans text-xl font-light tracking-tight text-white leading-snug uppercase">
-                {photo.title}
-              </h3>
-              {photo.date && (
-                <div className="flex items-center gap-1 font-sans text-[10px] uppercase tracking-wider text-zinc-400 font-bold">
-                  <Calendar className="h-3.5 w-3.5" />
-                  <span>Captured: {photo.date}</span>
-                </div>
-              )}
-            </div>
-            
-            {/* Desktop close button */}
+          {/* Header Row with Close Button on desktop */}
+          <div className="hidden md:flex items-center justify-between pb-4 border-b border-zinc-800">
+            <span className="font-sans text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+              Inspect Frame
+            </span>
             <button
-              id="lightbox-close-desktop"
+              id="lightbox-close-btn"
               onClick={onClose}
-              className="hidden md:flex border border-zinc-800 bg-zinc-950 p-2 text-zinc-400 hover:text-white transition-colors"
+              className="border border-white/10 bg-black/40 hover:bg-white hover:text-zinc-950 p-2 transition-all rounded-full"
+              aria-label="Close lightbox"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
-          {/* Description Story Snippet */}
+          {/* Title and Metadata */}
+          <div className="space-y-3">
+            <h3 className="font-sans text-lg lg:text-xl font-bold tracking-tight text-white leading-snug">
+              {photo.title}
+            </h3>
+            
+            {/* Metadata Tags */}
+            <div className="flex flex-wrap gap-2 text-[9px] font-sans font-bold uppercase tracking-wider text-zinc-400">
+              <span className="bg-zinc-900 px-2 py-1 border border-zinc-800 text-zinc-300">
+                {photo.tag || 'General'}
+              </span>
+              {photo.date && (
+                <span className="bg-zinc-900 px-2 py-1 border border-zinc-800 text-zinc-300">
+                  {photo.date}
+                </span>
+              )}
+              {photo.location && (
+                <span className="bg-zinc-900 px-2 py-1 border border-zinc-800 text-zinc-300">
+                  {photo.location}
+                </span>
+              )}
+              {(photo.context?.state || photo.metadata?.state) && (
+                <span className="bg-emerald-950/40 text-emerald-300 border border-emerald-900/50 px-2 py-1">
+                  State: {photo.context?.state || photo.metadata?.state}
+                </span>
+              )}
+              {(photo.context?.year || photo.metadata?.year) && (
+                <span className="bg-amber-950/40 text-amber-300 border border-amber-900/50 px-2 py-1">
+                  Year: {photo.context?.year || photo.metadata?.year}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Description */}
           {photo.description && (
-            <div className="border-l border-zinc-700 pl-4 py-1">
-              <p className="font-serif italic text-sm text-zinc-300 leading-relaxed">
+            <div className="space-y-2 pt-4 border-t border-zinc-900">
+              <h4 className="font-sans text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+                Frame Context
+              </h4>
+              <p className="font-serif text-sm text-zinc-300 leading-relaxed italic">
                 "{photo.description}"
               </p>
             </div>
           )}
-
-          {/* Photo Tag Card */}
-          <div className="space-y-3 border border-zinc-800/50 p-4 bg-zinc-950/40">
-            <div className="flex items-center justify-between border-b border-zinc-800/50 pb-2">
-              <span className="flex items-center gap-1.5 font-sans text-[10px] tracking-wider text-zinc-400 uppercase font-bold">
-                <Sliders className="h-3.5 w-3.5 text-zinc-500" />
-                Classification
-              </span>
-            </div>
-            
-            <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center rounded-sm bg-zinc-800 px-2.5 py-1 text-[10px] font-mono font-bold tracking-wider text-zinc-200 uppercase border border-zinc-700">
-                {photo.tag || 'General'}
-              </span>
-            </div>
-          </div>
-
-
-
         </div>
 
-        {/* Footer info inside sidebar */}
-        <div className="pt-6 border-t border-zinc-800 mt-6 flex justify-between items-center text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
-          <span>Stills in Time Portfolio</span>
-          <span>SYSTEM VER. 1.1</span>
+        {/* Footer copyright protection */}
+        <div className="pt-6 border-t border-zinc-900 mt-6 md:mt-auto">
+          <p className="font-sans text-[9px] tracking-wide text-zinc-500 leading-normal">
+            © {new Date().getFullYear()} Avik & Anwesha. All rights reserved. 
+            Copying, downloading, or reproducing this image for commercial or non-commercial purposes 
+            is strictly prohibited without prior written permission. Contact <a href="mailto:avik.chakbty.photos@gmail.com" className="text-zinc-400 underline hover:text-white transition-colors">avik.chakbty.photos@gmail.com</a>.
+          </p>
         </div>
-
-      </aside>
+      </div>
 
     </div>
   );

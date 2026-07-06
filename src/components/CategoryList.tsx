@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Calendar, Image as ImageIcon, Sparkles, Compass } from 'lucide-react';
+import { MapPin, Calendar, Image as ImageIcon, Sparkles, Compass, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Category } from '../types';
 import IndiaMap, { INDIA_STATES } from './IndiaMap';
+import { stripMarkdown } from '../utils/markdown';
 
 interface CategoryListProps {
   categories: Category[];
@@ -14,6 +15,76 @@ type FilterType = 'all' | 'travel' | 'milestone';
 export default function CategoryList({ categories, onSelectCategory }: CategoryListProps) {
   const [filter, setFilter] = useState<FilterType>('all');
   const [selectedStateFilter, setSelectedStateFilter] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
+
+  const START_YEAR = 2022;
+  const CURRENT_YEAR = new Date().getFullYear();
+
+  const timelineYears = useMemo(() => {
+    const list = [];
+    for (let yr = START_YEAR; yr <= CURRENT_YEAR; yr++) {
+      list.push(yr);
+    }
+    return list;
+  }, [CURRENT_YEAR]);
+
+  const handlePrevYear = () => {
+    if (selectedYear === 'all') return;
+    if (selectedYear === START_YEAR) {
+      setSelectedYear('all');
+    } else {
+      setSelectedYear(selectedYear - 1);
+    }
+  };
+
+  const handleNextYear = () => {
+    if (selectedYear === 'all') {
+      setSelectedYear(START_YEAR);
+    } else if (selectedYear < CURRENT_YEAR) {
+      setSelectedYear(selectedYear + 1);
+    }
+  };
+
+  const getSliderValues = () => {
+    if (selectedYear === 'all') {
+      return {
+        left: '—',
+        middle: 'All',
+        right: '2022'
+      };
+    }
+    
+    const yearNum = selectedYear;
+    let left = '';
+    if (yearNum === START_YEAR) {
+      left = 'All';
+    } else {
+      left = String(yearNum - 1);
+    }
+    
+    const middle = String(yearNum);
+    
+    let right = '';
+    if (yearNum === CURRENT_YEAR) {
+      right = '—';
+    } else {
+      right = String(yearNum + 1);
+    }
+    
+    return { left, middle, right };
+  };
+  
+  const { left: leftVal, middle: middleVal, right: rightVal } = getSliderValues();
+
+  const getCategoryYear = (cat: Category): number | null => {
+    const idMatch = cat.id.match(/^(\d{4})/);
+    if (idMatch) return parseInt(idMatch[1]);
+    
+    const dateMatch = cat.dateRange.match(/(\d{4})/);
+    if (dateMatch) return parseInt(dateMatch[1]);
+    
+    return null;
+  };
 
   // Find which Indian states have active galleries
   const activeStateMap = useMemo(() => {
@@ -71,7 +142,13 @@ export default function CategoryList({ categories, onSelectCategory }: CategoryL
         cat.title.toLowerCase().includes(s.name.toLowerCase()) ||
         cat.location.toLowerCase().includes(s.name.toLowerCase())
       );
-      return state?.id === selectedStateFilter;
+      if (state?.id !== selectedStateFilter) return false;
+    }
+
+    // Check selected year filter
+    if (selectedYear !== 'all') {
+      const catYear = getCategoryYear(cat);
+      if (catYear !== selectedYear) return false;
     }
 
     return true;
@@ -133,44 +210,109 @@ export default function CategoryList({ categories, onSelectCategory }: CategoryL
           
           {/* Filter Tabs */}
           <div id="filter-controls" className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-1 border border-zinc-200 p-1 bg-zinc-50">
-              <button
-                id="filter-all-btn"
-                onClick={() => setFilter('all')}
-                className={`px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
-                  filter === 'all'
-                    ? 'bg-zinc-900 text-white'
-                    : 'text-zinc-500 hover:text-zinc-900'
-                }`}
-              >
-                All Collections
-              </button>
+            <div className="flex flex-wrap items-center gap-3">
               
-              <button
-                id="filter-travel-btn"
-                onClick={() => setFilter('travel')}
-                className={`flex items-center gap-1.5 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
-                  filter === 'travel'
-                    ? 'bg-zinc-900 text-white'
-                    : 'text-zinc-500 hover:text-zinc-900'
-                }`}
-              >
-                <Compass className="h-3 w-3" />
-                Travel
-              </button>
-              
-              <button
-                id="filter-milestone-btn"
-                onClick={() => setFilter('milestone')}
-                className={`flex items-center gap-1.5 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
-                  filter === 'milestone'
-                    ? 'bg-zinc-900 text-white'
-                    : 'text-zinc-500 hover:text-zinc-900'
-                }`}
-              >
-                <Sparkles className="h-3 w-3" />
-                Milestones
-              </button>
+              {/* Collection Type Filter */}
+              <div className="flex items-center gap-1 border border-zinc-200 p-1 bg-zinc-50">
+                <button
+                  id="filter-all-btn"
+                  onClick={() => setFilter('all')}
+                  className={`px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
+                    filter === 'all'
+                      ? 'bg-zinc-900 text-white'
+                      : 'text-zinc-500 hover:text-zinc-900'
+                  }`}
+                >
+                  All Collections
+                </button>
+                
+                <button
+                  id="filter-travel-btn"
+                  onClick={() => setFilter('travel')}
+                  className={`flex items-center gap-1.5 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
+                    filter === 'travel'
+                      ? 'bg-zinc-900 text-white'
+                      : 'text-zinc-500 hover:text-zinc-900'
+                  }`}
+                >
+                  <Compass className="h-3 w-3" />
+                  Travel
+                </button>
+                
+                <button
+                  id="filter-milestone-btn"
+                  onClick={() => setFilter('milestone')}
+                  className={`flex items-center gap-1.5 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
+                    filter === 'milestone'
+                      ? 'bg-zinc-900 text-white'
+                      : 'text-zinc-500 hover:text-zinc-900'
+                  }`}
+                >
+                  <Sparkles className="h-3 w-3" />
+                  Milestones
+                </button>
+              </div>
+
+              {/* Camera-Dial Year Slider Widget */}
+              <div className="flex items-center gap-1 border border-zinc-200 p-1 bg-zinc-50 font-sans text-[10px] uppercase tracking-widest font-bold text-zinc-700">
+                <span className="pl-2 pr-1 text-zinc-400">Year:</span>
+                
+                <div className="flex items-center gap-1 bg-white border border-zinc-200 px-1 py-0.5">
+                  {/* Left Shift Button */}
+                  <button
+                    onClick={handlePrevYear}
+                    disabled={selectedYear === 'all'}
+                    className="p-1 text-zinc-400 hover:text-zinc-900 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                    aria-label="Previous year"
+                  >
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                  </button>
+
+                  {/* Horizontal Sliding Window Dial */}
+                  <div className="relative w-36 h-7 bg-zinc-55 border border-zinc-150/70 overflow-hidden flex items-center justify-center">
+                    {/* Leica-style Red Center Index Mark lines (Top & Bottom ticks) */}
+                    <div className="absolute top-0 left-1/2 w-[1px] h-1.5 bg-red-500 -translate-x-1/2 z-20 pointer-events-none" />
+                    <div className="absolute bottom-0 left-1/2 w-[1px] h-1.5 bg-red-500 -translate-x-1/2 z-20 pointer-events-none" />
+
+                    {/* Three slots */}
+                    <div className="grid grid-cols-3 w-full text-center font-mono text-[9px] tracking-tight relative select-none">
+                      {/* Left Value Slot */}
+                      <button
+                        onClick={handlePrevYear}
+                        disabled={leftVal === '—'}
+                        className="text-zinc-350 hover:text-zinc-650 disabled:pointer-events-none text-[8.5px] transition-colors truncate px-1 text-center font-medium"
+                      >
+                        {leftVal}
+                      </button>
+
+                      {/* Middle Value Slot */}
+                      <span className="text-zinc-950 font-bold text-[10px] scale-105 select-text truncate text-center bg-white py-0.5 border-x border-zinc-100 shadow-2xs z-10">
+                        {middleVal}
+                      </span>
+
+                      {/* Right Value Slot */}
+                      <button
+                        onClick={handleNextYear}
+                        disabled={rightVal === '—'}
+                        className="text-zinc-350 hover:text-zinc-650 disabled:pointer-events-none text-[8.5px] transition-colors truncate px-1 text-center font-medium"
+                      >
+                        {rightVal}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Right Shift Button */}
+                  <button
+                    onClick={handleNextYear}
+                    disabled={selectedYear === CURRENT_YEAR}
+                    className="p-1 text-zinc-400 hover:text-zinc-900 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                    aria-label="Next year"
+                  >
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+
             </div>
 
             <span className="font-sans text-[10px] uppercase tracking-wider text-zinc-400">
@@ -256,7 +398,7 @@ export default function CategoryList({ categories, onSelectCategory }: CategoryL
 
                   {/* Truncated description snippet */}
                   <p className="line-clamp-2 font-sans text-xs text-zinc-500 leading-relaxed">
-                    {cat.description}
+                    {stripMarkdown(cat.description)}
                   </p>
 
                   {/* Dynamic hover reveal indicator */}
@@ -271,9 +413,17 @@ export default function CategoryList({ categories, onSelectCategory }: CategoryL
             {filteredCategories.length === 0 && (
               <div className="col-span-full py-16 text-center border border-dashed border-zinc-200 bg-zinc-50">
                 <ImageIcon className="mx-auto h-8 w-8 text-zinc-300" />
-                <h4 className="mt-4 font-sans text-sm font-bold uppercase tracking-widest text-zinc-800">No collections created yet</h4>
+                <h4 className="mt-4 font-sans text-sm font-bold uppercase tracking-widest text-zinc-800">
+                  {selectedYear !== 'all' 
+                    ? `No collections in ${selectedYear}`
+                    : 'No collections created yet'
+                  }
+                </h4>
                 <p className="mt-2 text-xs text-zinc-500 max-w-sm mx-auto">
-                  Head over to the Creator Desk to create your first travel destination or milestone portfolio series.
+                  {selectedYear !== 'all'
+                    ? 'Try selecting a different year in the dropdown above or clear the filter to see other chronicles.'
+                    : 'Head over to the Creator Desk to create your first travel destination or milestone portfolio series.'
+                  }
                 </p>
               </div>
             )}
