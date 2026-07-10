@@ -2,6 +2,8 @@ import React from 'react';
 import { Camera, Compass, Layers, ShieldCheck, Heart, Sparkles, BookOpen } from 'lucide-react';
 
 export default function AboutView() {
+  const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <div id="about-view-root" className="space-y-16 py-4 animate-fade-in">
       
@@ -74,7 +76,7 @@ export default function AboutView() {
               {/* Animated camera & mobile preview container */}
               <div className="group relative overflow-hidden border border-zinc-150 bg-zinc-50/50 aspect-square transition-all duration-350 hover:bg-zinc-50 hover:border-zinc-250">
                 <img
-                  src="/camera_mobile.jpg"
+                  src={`${baseUrl}camera_mobile.jpg`}
                   alt="Nikon Z50 & Samsung S23 Ultra"
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:translate-y-[-4px]"
                   loading="lazy"
@@ -110,7 +112,7 @@ export default function AboutView() {
               {/* Animated lenses preview container */}
               <div className="group relative overflow-hidden border border-zinc-150 bg-zinc-50/50 aspect-square transition-all duration-350 hover:bg-zinc-50 hover:border-zinc-250">
                 <img
-                  src="/lenses.jpg"
+                  src={`${baseUrl}lenses.jpg`}
                   alt="NIKKOR Z Lenses"
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:translate-y-[-4px]"
                   loading="lazy"
@@ -146,7 +148,7 @@ export default function AboutView() {
               {/* Animated travel essentials preview container */}
               <div className="group relative overflow-hidden border border-zinc-150 bg-zinc-50/50 aspect-square transition-all duration-350 hover:bg-zinc-50 hover:border-zinc-250">
                 <img
-                  src="/travel.jpg"
+                  src={`${baseUrl}travel.jpg`}
                   alt="Travel Essentials & Philosophy"
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:translate-y-[-4px]"
                   loading="lazy"

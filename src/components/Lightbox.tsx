@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Photo } from '../types';
+import { getResponsiveImageProps } from '../utils/cloudinary';
 
 interface LightboxProps {
   photo: Photo;
@@ -57,7 +58,11 @@ export default function Lightbox({ photo, onClose, onNext, onPrev }: LightboxPro
           {/* Image Container */}
           <div className="relative overflow-hidden max-h-full max-w-full flex items-center justify-center p-2">
             <img
-              src={photo.url}
+              {...getResponsiveImageProps(
+                photo.url,
+                [600, 800, 1200, 1600, 2000, 2400],
+                '(max-width: 768px) 80vw, 75vw'
+              )}
               alt={photo.title}
               referrerPolicy="no-referrer"
               onContextMenu={(e) => e.preventDefault()}

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ChevronLeft, BookOpen, MapPin, Calendar, Compass, Sparkles, Filter, SlidersHorizontal, Eye } from 'lucide-react';
 import { Category, Photo } from '../types';
 import { renderMarkdown, stripMarkdown } from '../utils/markdown';
+import { getResponsiveImageProps } from '../utils/cloudinary';
 
 interface GalleryViewProps {
   category: Category;
@@ -213,7 +214,11 @@ export default function GalleryView({ category, onBack, onPhotoClick }: GalleryV
                 className="group relative cursor-pointer break-inside-avoid mb-6 overflow-hidden border border-zinc-150 bg-zinc-50 transition-all duration-350 hover:border-zinc-400"
               >
                 <img
-                  src={photo.url}
+                  {...getResponsiveImageProps(
+                    photo.url,
+                    [400, 600, 800, 1000, 1200],
+                    '(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 24px), 400px'
+                  )}
                   alt={photo.title}
                   referrerPolicy="no-referrer"
                   className="w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.01]"
@@ -289,7 +294,12 @@ export default function GalleryView({ category, onBack, onPhotoClick }: GalleryV
           {/* Mini Cover Hero */}
           <div id="gallery-cover-hero" className="relative h-48 sm:h-64 lg:h-48 xl:h-56 w-full overflow-hidden bg-zinc-950 border border-zinc-200">
             <img
-              src={category.coverUrl}
+              {...getResponsiveImageProps(
+                category.coverUrl,
+                [400, 600, 800, 1000, 1200, 1600],
+                '(max-width: 1024px) calc(100vw - 32px), 420px',
+                { aspectRatio: '16:9' }
+              )}
               alt={category.title}
               referrerPolicy="no-referrer"
               className="absolute inset-0 h-full w-full object-cover opacity-60 filter saturate-50 brightness-90"

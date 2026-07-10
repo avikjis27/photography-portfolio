@@ -7,7 +7,7 @@ const rawDefaultCategories: Category[] = [
     state: 'mh',
     title: 'Koyna Dam, Satara',
     type: 'travel',
-    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1783541679/_DSC0043_zmq2jv.jpg',
+    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1783541679/_DSC0043_zmq2jv.jpg',
     location: 'Maharashtra, India',
     dateRange: 'Monsoon 2025',
     description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
@@ -20,7 +20,7 @@ Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doo
     state: 'wb',
     title: 'Char Benapur, India',
     type: 'travel',
-    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1783539250/_DSC7212_03_vx236n.jpg',
+    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1783539250/_DSC7212_03_vx236n.jpg',
     location: 'West Bengal, India',
     dateRange: 'Monsoon 2024',
     description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
@@ -33,7 +33,7 @@ Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doo
     state: 'sk',
     title: 'West Sikkim, India',
     type: 'travel',
-    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1782755158/_DSC2768_mgci8d.jpg',
+    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1782755158/_DSC2768_mgci8d.jpg',
     location: 'West Sikkim, India',
     dateRange: 'Winter 2025',
     description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
@@ -46,7 +46,7 @@ Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doo
     state: 'or',
     title: 'Bangriposhi: The Village That Inspired a Classic Bengali Romance',
     type: 'travel',
-    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/v1783449096/_DSC9234_yohl0f.jpg',
+    coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1783449096/_DSC9234_yohl0f.jpg',
     location: 'Odisha, India',
     dateRange: 'Spring 2025',
     description: `Spring drew me to Bangriposhi, a quiet village in **Odisha** where nature still sets the rhythm of life. Though not always on the tourist map, Bangriposhi gained recognition after renowned Bengali writer Buddhadeb Guha immortalized it in his romantic novel *Bangriposhir Du Ratti*. Ever since, the village has held a special place in the hearts of many readers and travelers.

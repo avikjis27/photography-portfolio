@@ -4,6 +4,7 @@ import { MapPin, Calendar, Image as ImageIcon, Sparkles, Compass, ChevronDown, C
 import { Category } from '../types';
 import IndiaMap, { INDIA_STATES } from './IndiaMap';
 import { stripMarkdown } from '../utils/markdown';
+import { getResponsiveImageProps } from '../utils/cloudinary';
 
 interface CategoryListProps {
   categories: Category[];
@@ -354,7 +355,12 @@ export default function CategoryList({ categories, onSelectCategory }: CategoryL
                 {/* Aspect Ratio Box */}
                 <div className="relative aspect-4/3 overflow-hidden bg-zinc-50">
                   <img
-                    src={cat.coverUrl}
+                    {...getResponsiveImageProps(
+                      cat.coverUrl,
+                      [400, 600, 800, 1000, 1200],
+                      '(max-width: 640px) calc(100vw - 32px), (max-width: 1280px) 50vw, 600px',
+                      { aspectRatio: '4:3' }
+                    )}
                     alt={cat.title}
                     referrerPolicy="no-referrer"
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
