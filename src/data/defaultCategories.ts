@@ -10,9 +10,12 @@ const rawDefaultCategories: Category[] = [
     coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1783541679/_DSC0043_zmq2jv.jpg',
     location: 'Maharashtra, India',
     dateRange: 'Monsoon 2025',
-    description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
-This photo essay captures the silent dialogue between architecture and nature. We walked through Fushimi Inari-taisha at five in the morning, before the orange corridors were filled with voices, hearing only the distant cry of crows and the crunch of gravel beneath our boots. In Arashiyama, the bamboo stalks whispered as they swayed, filter-feeding the dawn light into stripes of vibrant emerald.
-Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doors soften the afternoon sun, casting long, peaceful gradients across tatami mats. Through these photographs, I sought to capture "Yūgen"—a profound, mysterious grace, and "Wabi-Sabi"—the beautiful imperfection of weathered wooden facades, fallen autumn maple leaves on dark stone basins, and steam rising from a single bowl of hand-whisked matcha.`,
+    description: `In 2025, the monsoon arrived in the Western Ghats much earlier than usual. By the first week of May, dark rain clouds had begun to blanket the skies of Maharashtra. Typically, the monsoon makes its grand entrance in early June, but this year nature had different plans. The early showers gifted us a few extra weekends to experience the magic of the Sahyadri mountains at their lush, rain-soaked best.
+
+Our destination was the majestic Koyna Dam, one of India's largest hydroelectric projects, built across the Koyna River. Stretching nearly 50 kilometers, the vast Shivsagar Lake forms its serene backwaters, creating a landscape that feels both immense and tranquil.
+
+We stayed at a private property near the Maharashtra Tourism lodge, blessed with a beautiful balcony overlooking the Koyna Dam. The entire region appears to have been carved out of dense evergreen forests, offering uninterrupted panoramic views in every direction. Throughout the day, drifting clouds cast moving shadows across the still waters, constantly transforming the scenery. At times, thick mist rolled into the valley, enveloping everything around us. Standing on the balcony, feeling the cool, gentle touch of the clouds against our faces, we realized that this was more than just a destination—it was an experience that captured the true essence of the Western Ghats during the monsoon.
+`,
     photos: (cloudinaryPhotos['2025'] && cloudinaryPhotos['2025']['koyna-dam-satara']) || []
   },
   {
