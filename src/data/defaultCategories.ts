@@ -26,9 +26,19 @@ We stayed at a private property near the Maharashtra Tourism lodge, blessed with
     coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1783539250/_DSC7212_03_vx236n.jpg',
     location: 'West Bengal, India',
     dateRange: 'Monsoon 2024',
-    description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
-This photo essay captures the silent dialogue between architecture and nature. We walked through Fushimi Inari-taisha at five in the morning, before the orange corridors were filled with voices, hearing only the distant cry of crows and the crunch of gravel beneath our boots. In Arashiyama, the bamboo stalks whispered as they swayed, filter-feeding the dawn light into stripes of vibrant emerald.
-Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doors soften the afternoon sun, casting long, peaceful gradients across tatami mats. Through these photographs, I sought to capture "Yūgen"—a profound, mysterious grace, and "Wabi-Sabi"—the beautiful imperfection of weathered wooden facades, fallen autumn maple leaves on dark stone basins, and steam rising from a single bowl of hand-whisked matcha.`,
+    description: `Some things in life are destined to break.
+
+Dreams shatter. Relationships fall apart. Sometimes, it is the heart that bears the deepest cracks. Trust fades. Homes disappear. For many, even the comfort of a safe shelter is taken away.
+
+Rivers have their own way of reminding us of life's impermanence. As one bank crumbles into the water, another slowly emerges somewhere else. Without noise or warning, the river inches forward, swallowing fields, homes, and entire villages. Along the banks of the Rupnarayan, where life appears quiet and unhurried, erosion is not an occasional disaster—it is a constant companion.
+
+The Rupnarayan River separates Purba Medinipur on its western bank from Howrah on its eastern bank. It is the eastern bank, on the Howrah side, that has been steadily and silently disappearing into the river for years. We found ourselves at Char Benapur, standing on land that exists in a delicate balance between permanence and loss.
+
+Yet, even here, life refuses to surrender. We humans are creatures of the present, always searching for hope amid uncertainty. A patch of green grass, a newly planted tree, a house rebuilt a little farther inland—small signs that tomorrow is still worth believing in.
+
+Perhaps that is the quiet resilience of those who live by the river. They know the land beneath their feet may not last forever, but they continue to build, to dream, and to live until the very last moment before the river comes calling once again.
+
+This version is more reflective and narrative, making it well-suited as the opening or closing section of a travel blog or photo story about the Rupnarayan River and the people living along its eroding banks.`,
     photos: (cloudinaryPhotos['2024'] && cloudinaryPhotos['2024']['benapur-west-bengal']) || []
   },
   {
@@ -39,9 +49,7 @@ Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doo
     coverUrl: 'https://res.cloudinary.com/dqwd7rzmz/image/upload/w_200,h_200,c_fill,f_auto,q_auto/v1782755158/_DSC2768_mgci8d.jpg',
     location: 'West Sikkim, India',
     dateRange: 'Winter 2025',
-    description: `A quiet journey through the ancient heart of Japan. Kyoto is a sanctuary where wood, moss, and stone tell stories centuries older than the concrete giants of Tokyo. 
-This photo essay captures the silent dialogue between architecture and nature. We walked through Fushimi Inari-taisha at five in the morning, before the orange corridors were filled with voices, hearing only the distant cry of crows and the crunch of gravel beneath our boots. In Arashiyama, the bamboo stalks whispered as they swayed, filter-feeding the dawn light into stripes of vibrant emerald.
-Every tea house in Gion is a masterclass in shadows. The sliding paper shoji doors soften the afternoon sun, casting long, peaceful gradients across tatami mats. Through these photographs, I sought to capture "Yūgen"—a profound, mysterious grace, and "Wabi-Sabi"—the beautiful imperfection of weathered wooden facades, fallen autumn maple leaves on dark stone basins, and steam rising from a single bowl of hand-whisked matcha.`,
+    description: `Yet to publish`,    
     photos: (cloudinaryPhotos['2025'] && cloudinaryPhotos['2025']['west-sikkim']) || []
   },
   {
