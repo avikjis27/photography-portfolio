@@ -1,9 +1,9 @@
 import React from 'react';
-import { Camera, Settings, Compass, Layers } from 'lucide-react';
+import { Camera, Compass, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
-  currentView: 'portfolio' | 'about';
-  setView: (view: 'portfolio' | 'about') => void;
+  currentView: 'best' | 'portfolio' | 'about';
+  setView: (view: 'best' | 'portfolio' | 'about') => void;
   onHomeClick: () => void;
 }
 
@@ -32,10 +32,23 @@ export default function Header({ currentView, setView, onHomeClick }: HeaderProp
         </button>
 
         {/* Navigation */}
-        <nav id="main-navigation" className="flex items-center gap-6 sm:gap-8">
+        <nav id="main-navigation" className="flex items-center gap-4 sm:gap-8">
+          <button
+            id="nav-best-button"
+            onClick={() => setView('best')}
+            className={`flex items-center gap-1.5 border-b-2 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
+              currentView === 'best'
+                ? 'border-zinc-900 text-zinc-900'
+                : 'border-transparent text-zinc-400 hover:text-zinc-900'
+            }`}
+          >
+            <Sparkles className="h-3 w-3 text-amber-500" />
+            <span>Best Shots</span>
+          </button>
+
           <button
             id="nav-portfolio-button"
-            onClick={onHomeClick}
+            onClick={() => setView('portfolio')}
             className={`flex items-center gap-1.5 border-b-2 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all ${
               currentView === 'portfolio'
                 ? 'border-zinc-900 text-zinc-900'

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { defaultCategories } from './data/defaultCategories';
+import { bestPhotos } from './data/bestPhotos';
 import { Category, Photo } from './types';
 import Header from './components/Header';
+import BestPhotosView from './components/BestPhotosView';
 import CategoryList from './components/CategoryList';
 import GalleryView from './components/GalleryView';
 import Lightbox from './components/Lightbox';
 import AboutView from './components/AboutView';
 
 const LOCAL_STORAGE_CAT_KEY = 'aperture_ink_categories_v1';
-const LOCAL_STORAGE_CLOUD_KEY = 'aperture_ink_cloudinary_v1';
 
 export default function App() {
   // Load initial categories from local storage or default to curated preset
@@ -24,8 +25,8 @@ export default function App() {
     return defaultCategories;
   });
 
-  // View & selection states
-  const [currentView, setView] = useState<'portfolio' | 'about'>('portfolio');
+  // View & selection states - Defaults to 'best' (Home Showcase)
+  const [currentView, setView] = useState<'best' | 'portfolio' | 'about'>('best');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [activePhoto, setActivePhoto] = useState<Photo | null>(null);
 
@@ -34,35 +35,33 @@ export default function App() {
     localStorage.setItem(LOCAL_STORAGE_CAT_KEY, JSON.stringify(categories));
   }, [categories]);
 
-  // Handle resetting to preset default stories & photos
-  const handleResetToDefaults = () => {
-    if (confirm("This will overwrite all custom categories, stories, and uploads with the factory-curated travel and milestone portfolio collections. Continue?")) {
-      setCategories(defaultCategories);
-      setSelectedCategoryId(null);
-      setActivePhoto(null);
-      setView('portfolio');
-    }
-  };
-
-  // Find the selected category object
+  // Find the selected category object if in portfolio view
   const activeCategory = categories.find((c) => c.id === selectedCategoryId) || null;
+
+  // Active photo context list for Lightbox cycling
+  const activePhotoList = useMemo(() => {
+    if (currentView === 'portfolio' && activeCategory) {
+      return activeCategory.photos;
+    }
+    return bestPhotos;
+  }, [currentView, activeCategory]);
 
   // Next and Prev handlers for Lightbox cycling
   const handleNextPhoto = () => {
-    if (!activePhoto || !activeCategory) return;
-    const currentIndex = activeCategory.photos.findIndex((p) => p.id === activePhoto.id);
+    if (!activePhoto || activePhotoList.length === 0) return;
+    const currentIndex = activePhotoList.findIndex((p) => p.id === activePhoto.id);
     if (currentIndex !== -1) {
-      const nextIndex = (currentIndex + 1) % activeCategory.photos.length;
-      setActivePhoto(activeCategory.photos[nextIndex]);
+      const nextIndex = (currentIndex + 1) % activePhotoList.length;
+      setActivePhoto(activePhotoList[nextIndex]);
     }
   };
 
   const handlePrevPhoto = () => {
-    if (!activePhoto || !activeCategory) return;
-    const currentIndex = activeCategory.photos.findIndex((p) => p.id === activePhoto.id);
+    if (!activePhoto || activePhotoList.length === 0) return;
+    const currentIndex = activePhotoList.findIndex((p) => p.id === activePhoto.id);
     if (currentIndex !== -1) {
-      const prevIndex = (currentIndex - 1 + activeCategory.photos.length) % activeCategory.photos.length;
-      setActivePhoto(activeCategory.photos[prevIndex]);
+      const prevIndex = (currentIndex - 1 + activePhotoList.length) % activePhotoList.length;
+      setActivePhoto(activePhotoList[prevIndex]);
     }
   };
 
@@ -72,16 +71,29 @@ export default function App() {
       {/* Editorial Navigation Header */}
       <Header 
         currentView={currentView} 
-        setView={setView} 
+        setView={(v) => {
+          setView(v);
+          if (v !== 'portfolio') {
+            setSelectedCategoryId(null);
+          }
+        }} 
         onHomeClick={() => {
-          setView('portfolio');
+          setView('best');
           setSelectedCategoryId(null);
         }}
       />
 
       {/* Main Exhibition Stage */}
       <main id="main-content-area" className="flex-1 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {currentView === 'portfolio' ? (
+        {currentView === 'best' ? (
+          <BestPhotosView
+            onPhotoClick={(photo) => setActivePhoto(photo)}
+            onSelectCategory={(catId) => {
+              setSelectedCategoryId(catId);
+              setView('portfolio');
+            }}
+          />
+        ) : currentView === 'portfolio' ? (
           activeCategory ? (
             <GalleryView
               category={activeCategory}
