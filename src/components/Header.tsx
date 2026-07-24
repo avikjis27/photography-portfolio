@@ -16,23 +16,27 @@ export default function Header({ currentView, setView, onHomeClick }: HeaderProp
         <button
           id="logo-button"
           onClick={onHomeClick}
-          className="flex items-center gap-3 text-left transition-opacity hover:opacity-85"
+          className="flex items-center gap-3 text-left transition-opacity hover:opacity-85 flex-shrink-0"
+          aria-label="Stills in Time Home"
         >
-          <div className="flex h-9 w-9 items-center justify-center border border-zinc-900 text-zinc-900 font-mono text-sm font-bold tracking-tighter">
+          {/* Logo Frame Box */}
+          <div className="flex h-9 w-9 items-center justify-center border border-zinc-900 text-zinc-900 font-mono text-sm font-bold tracking-tighter bg-white">
             ST
           </div>
-          <div>
-            <h1 className="font-sans text-base font-bold tracking-tighter text-zinc-900 uppercase">
+          
+          {/* Brand Name Text: Strictly hidden on mobile & small screens, visible only on medium desktop screens (md:block) */}
+          <div className="hidden md:block">
+            <h1 className="font-sans text-base font-bold tracking-tighter text-zinc-900 uppercase leading-none">
               Stills in Time
             </h1>
-            <p className="font-sans text-[9px] tracking-widest text-zinc-400 font-bold uppercase">
+            <p className="font-sans text-[9px] tracking-widest text-zinc-400 font-bold uppercase mt-0.5">
               Avik & Anwesha
             </p>
           </div>
         </button>
 
         {/* Navigation */}
-        <nav id="main-navigation" className="flex items-center gap-4 sm:gap-8">
+        <nav id="main-navigation" className="flex items-center gap-3 sm:gap-6 lg:gap-8">
           <button
             id="nav-best-button"
             onClick={() => setView('best')}
@@ -42,7 +46,7 @@ export default function Header({ currentView, setView, onHomeClick }: HeaderProp
                 : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
-            <Sparkles className="h-3 w-3 text-amber-500" />
+            <Sparkles className="h-3 w-3 text-amber-500 flex-shrink-0" />
             <span>Best Shots</span>
           </button>
 
@@ -55,7 +59,7 @@ export default function Header({ currentView, setView, onHomeClick }: HeaderProp
                 : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
-            <Compass className="h-3 w-3" />
+            <Compass className="h-3 w-3 flex-shrink-0" />
             <span>India Chronicles</span>
           </button>
 
@@ -68,8 +72,9 @@ export default function Header({ currentView, setView, onHomeClick }: HeaderProp
                 : 'border-transparent text-zinc-400 hover:text-zinc-900'
             }`}
           >
-            <Camera className="h-3 w-3" />
-            <span>About & Gear</span>
+            <Camera className="h-3 w-3 flex-shrink-0" />
+            <span className="hidden min-[400px]:inline">About & Gear</span>
+            <span className="inline min-[400px]:hidden">About</span>
           </button>
         </nav>
 
