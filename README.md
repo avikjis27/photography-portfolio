@@ -1,117 +1,87 @@
-# 📸 Stills in Time — Photography Portfolio Guide
+# 📸 Stills in Time — Yearwise Decoupled Content Guide
 
-Welcome to your photography portfolio website! This guide explains in simple, plain English how to add new photos, update collection stories, and preview your changes.
-
----
-
-## 🚀 Quick Start (Running Locally)
-
-To view the website on your computer:
-1. Open your terminal in this folder.
-2. Type `npm run dev` and press Enter.
-3. Open your browser and go to `http://localhost:3000`.
+All travel stories, photo collections, and EXIF metadata are completely decoupled from code into clean **Markdown (`.md`) files** organized inside yearwise folders in:
+👉 `src/content/series/[YEAR]/`
 
 ---
 
-## 📁 Which Files Do I Edit?
+## 📁 Yearwise Directory Structure
 
-You only need to edit **two simple files** in the `src/data/` folder:
+Each series is organized into a sub-folder corresponding to its year:
 
-| Task | File to Edit |
-| :--- | :--- |
-| **Add photos to the Home Page (Best Shots)** | `src/data/bestPhotos.ts` |
-| **Add travel stories & series (India Chronicles)** | `src/data/defaultCategories.ts` |
-
----
-
-## 🖼️ Task 1: How to Add Photos to the Home Page (Best Shots)
-
-Open `src/data/bestPhotos.ts` in your text editor (like VS Code or Notepad).
-
-At the top of the list, add a new block like this:
-
-```typescript
-{
-  id: 'my-photo-1', // Any unique name without spaces
-  url: 'https://your-image-link.com/photo.jpg', // Direct link to your photo
-  title: 'Morning Sun over Koyna Lake', // Title shown on hover & gallery
-  location: 'Satara, Maharashtra', // Location
-  date: 'Monsoon 2025', // Season/Date
-  categoryTag: 'Monsoon & Rivers', // Choose: 'Monsoon & Rivers' | 'Himalayan Vistas' | 'Spring & Flora' | 'Rural & Heritage'
-  exif: {
-    camera: 'Nikon Z Series', // Camera model
-    lens: '24-70mm f/4', // Lens model
-    shutter: '1/320s', // Shutter speed
-    aperture: 'f/8.0', // Aperture (f-stop)
-    iso: 'ISO 100', // ISO
-    focalLength: '35mm' // Focal length
-  }
-},
-```
-
-> 💡 **Tip:** The Home Page displays the **first 16 photos** in a clean 4x4 grid. When visitors click any photo, they can cycle through all photos in your collection.
-
----
-
-## 🗺️ Task 2: How to Add a Travel Story to India Chronicles
-
-Open `src/data/defaultCategories.ts` in your text editor.
-
-To add a new travel story or destination collection, add a block like this inside `rawDefaultCategories`:
-
-```typescript
-{
-  id: '2026-meghalaya-monsoon', // Unique ID (Year-Location)
-  state: 'ml', // 2-letter state code (e.g. 'ml' for Meghalaya, 'wb' for West Bengal, 'mh' for Maharashtra)
-  title: 'Monsoon in Meghalaya', // Story title
-  type: 'travel', // 'travel' or 'milestone'
-  coverUrl: 'https://your-image-link.com/cover.jpg', // Cover image URL
-  location: 'Meghalaya, India', // Region
-  dateRange: 'Monsoon 2026', // Date label
-  description: `Write your travelogue story here. You can write multiple paragraphs describing your travel experience, the scenery, and special moments.`,
-  photos: [
-    {
-      id: 'ml-photo-1',
-      url: 'https://your-image-link.com/waterfall.jpg',
-      title: 'Cherrapunji Falls in Full Flow',
-      location: 'Cherrapunji, Meghalaya',
-      date: 'Monsoon 2026',
-      aspectRatio: 'landscape',
-      tag: 'Waterfalls'
-    }
-  ]
-},
+```text
+src/content/series/
+├── 2024/
+│   └── benapur-west-bengal.md
+└── 2025/
+    ├── koyna-dam-satara.md
+    ├── bangriposhi.md
+    └── west-sikkim.md
 ```
 
 ---
 
-## 🌐 2-Letter Indian State Codes (for Interactive Map)
+## 📝 How to Add a New Photo Series for Any Year
 
-When adding a story in `defaultCategories.ts`, setting the `state` code will automatically highlight that state on the **Interactive Map of India**:
+To add a new series to your portfolio:
+1. Create a year folder if it doesn't exist (e.g. `src/content/series/2026/`).
+2. Create a new `.md` file inside that year folder (e.g. `src/content/series/2026/meghalaya.md`).
+3. Add metadata at the top between `---` markers, followed by your travel story text below.
 
-- **West Bengal**: `'wb'`
-- **Maharashtra**: `'mh'`
-- **Odisha**: `'or'`
-- **Sikkim**: `'sk'`
-- **Meghalaya**: `'ml'`
-- **Himachal Pradesh**: `'hp'`
-- **Uttarakhand**: `'uk'`
-- **Rajasthan**: `'rj'`
-- **Kerala**: `'kl'`
-- **Karnataka**: `'ka'`
-- **Ladakh**: `'la'`
-- **Jammu & Kashmir**: `'jk'`
+### Example Markdown File (`src/content/series/2026/meghalaya.md`):
+
+```markdown
+---
+id: 2026-meghalaya
+title: Monsoon Whispers of Meghalaya
+state: ml
+type: travel
+location: Meghalaya, India
+dateRange: Monsoon 2026
+coverUrl: https://your-image-host.com/cover.jpg
+photos:
+  - id: mg-photo-1
+    url: https://your-image-host.com/waterfall.jpg
+    title: Nohkalikai Falls in Heavy Mist
+    description: Towering monsoon cascade shrouded in drifting clouds.
+    storySnippet: Standing at the edge of the plateau watching rainwater plunge into emerald pools.
+    location: Cherrapunji, Meghalaya
+    date: Monsoon 2026
+    tag: Monsoon & Rivers
+    categoryTag: Monsoon & Rivers
+    camera: Nikon Z Series
+    lens: NIKKOR Z 24-70mm f/4 S
+    shutter: 1/500s
+    aperture: f/8.0
+    iso: ISO 100
+    focalLength: 35mm
+---
+
+Write your full travelogue story text here. 
+
+You can write multiple paragraphs, use bold text, lists, and quotes. The website automatically renders this narrative in the story gallery view and highlights Meghalaya on the interactive map of India.
+```
 
 ---
 
-## ☁️ Where Should I Upload My Photos?
+## 🗺️ 2-Letter State Codes for Map Highlights
 
-You can host your high-resolution photos on:
-1. **Cloudinary** (Recommended — fast, optimized image delivery)
-2. **Imgur / Flickr / Unsplash** or any image host that gives you a direct link ending in `.jpg` or `.png`.
+Setting the `state` property in the frontmatter automatically highlights that state on the interactive map:
+
+- **Maharashtra**: `state: mh`
+- **West Bengal**: `state: wb`
+- **Odisha**: `state: or`
+- **Sikkim**: `state: sk`
+- **Meghalaya**: `state: ml`
+- **Himachal Pradesh**: `state: hp`
+- **Uttarakhand**: `state: uk`
+- **Rajasthan**: `state: rj`
+- **Kerala**: `state: kl`
+- **Karnataka**: `state: ka`
+- **Ladakh**: `state: la`
 
 ---
 
-## 🤝 Need Help?
+## 🚀 Preview Changes
 
-If anything looks out of place, simply run `npm run dev` in your terminal to preview your edits in real-time!
+Run `npm run dev` in your terminal to launch the website locally and preview your new yearwise Markdown stories in real time.
